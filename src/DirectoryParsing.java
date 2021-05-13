@@ -19,13 +19,23 @@ public class DirectoryParsing extends SimpleFileVisitor <Path> {
 
         fileData.date = lines.get(5).substring(36).trim();
 
-        String transportType = lines.get(4).substring(62).trim();
-        transportType = transportType.substring(0,transportType.indexOf(")")).trim();
-
-        fileData.transportType = transportType;
+//        String transportType = lines.get(25).substring(40).trim();
+//        transportType = transportType.substring(0,transportType.indexOf('.')).trim();
+//
+//
+//        fileData.transportType = transportType;
         //System.out.println("Количество строк в файле: "+lines.size());
 
         for (String s:lines) {
+
+            if (s.contains("Трамвай")){
+                fileData.transportType = "Трамвай";
+            }
+            else if (s.contains("Троллейбус")){
+                fileData.transportType = "Троллейбус";
+            }
+            else if (s.contains("Автобус"))
+                fileData.transportType = "Автобус";
 
             if(s.contains("Итого")){
                 fileData.numberOfTickets = s.substring(s.indexOf("- ")+2).trim();
