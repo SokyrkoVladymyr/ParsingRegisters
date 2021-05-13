@@ -8,13 +8,15 @@ public class WriteData {
 
 
 
-    public WriteData()   {
+    WriteData()   {
 
     }
 
     public void WriteToFile () throws IOException {
         FileWriter fw = new FileWriter("C:\\Java\\FileWriter\\TestFileWriter.txt");
+        FileWriter fwCsv = new FileWriter("C:\\Java\\FileWriter\\FileWriter.csv");
         fw.write("   Дата       Тип ТС     Сумма платежей    Комиссия   Количество билетов \n");
+        fwCsv.write("Дата;Тип ТС;Сумма платежей;Комиссия;Количество билетов \n");
 
         for (FileData fd: Main.filesData ) {
 
@@ -25,17 +27,34 @@ public class WriteData {
 //            fw.write(fd.numberOfTickets, 61,fd.numberOfTickets.length());
 //            fw.write(" \n");
 
-            if (fd.transportType.equals("троллейбус")){
-                fw.write(fd.date + "    "+ fd.transportType + "       " + fd.amount
-                        + "         " + fd.commission + "         " + fd.numberOfTickets + "    \n");
-            }
-            else
+        if (fd.transportType.equals("троллейбус")){
+            fw.write(fd.date + "    "+ fd.transportType + "       " + fd.amount
+                    + "         " + fd.commission + "         " + fd.numberOfTickets + "    \n");
+        }
+        else
             fw.write(fd.date + "    "+ fd.transportType + "          " + fd.amount
                     + "         " + fd.commission + "         " + fd.numberOfTickets + "    \n");
 
-        }
+    }
 
         fw.close();
 
+}
+
+    void WriteToFileCSV () throws IOException {
+
+        FileWriter fwCsv = new FileWriter("C:\\Java\\FileWriter\\FileWriter.csv");
+        fwCsv.write("Дата;Тип ТС;Сумма платежей;Комиссия;Количество билетов \n");
+
+        for (FileData fd: Main.filesData ) {
+
+
+                fwCsv.write(fd.date + ";"+ fd.transportType + ";" + fd.amount
+                        + ";" + fd.commission + ";" + fd.numberOfTickets + "\n");
+
+        }
+
+        fwCsv.close();
     }
+
 }

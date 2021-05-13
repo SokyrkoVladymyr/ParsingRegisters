@@ -19,7 +19,8 @@ public class Main {
 
         //System.out.println(filesData.size());
 
-        writeData.WriteToFile();
+        //writeData.WriteToFile();
+        writeData.WriteToFileCSV();
 
 
 
