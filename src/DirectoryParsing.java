@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.FileVisitResult;
@@ -8,6 +9,11 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 
 public class DirectoryParsing extends SimpleFileVisitor <Path> {
+    WriteData writeData = new WriteData();
+    int number = 1;
+
+    public DirectoryParsing() throws FileNotFoundException {
+    }
 
 
     @Override
@@ -58,11 +64,10 @@ public class DirectoryParsing extends SimpleFileVisitor <Path> {
 
         }
 
+       WriteData.filesData.add(fileData);
 
-       Main.filesData.add(fileData);
-//        int number = 1;
-//        System.out.println("Файл " + number + " Добавлен в массив");
-//        number++;
+      System.out.println("Файл " + number + " Добавлен в массив");
+        number++;
 
         return FileVisitResult.CONTINUE;
     }

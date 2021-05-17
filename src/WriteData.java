@@ -1,24 +1,25 @@
 
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class WriteData {
 
 
+    static List<FileData> filesData = new ArrayList<>();
 
 
-    WriteData()   {
+    WriteData() throws FileNotFoundException {
 
     }
 
     public void WriteToFile () throws IOException {
-        FileWriter fw = new FileWriter("C:\\Java\\FileWriter\\TestFileWriter.txt");
-        FileWriter fwCsv = new FileWriter("C:\\Java\\FileWriter\\FileWriter.csv");
+        FileWriter fw = new FileWriter(ConfigReader.getFileWriterTXT());
         fw.write("   Дата       Тип ТС     Сумма платежей    Комиссия   Количество билетов \n");
-        fwCsv.write("Дата;Тип ТС;Сумма платежей;Комиссия;Количество билетов \n");
 
-        for (FileData fd: Main.filesData ) {
+        for (FileData fd: filesData ) {
 
 //            fw.write(fd.date,0,fd.date.length());
 //            fw.write(fd.transportType,15,fd.transportType.length());
@@ -42,11 +43,13 @@ public class WriteData {
 }
 
     void WriteToFileCSV () throws IOException {
+        System.out.println(ConfigReader.getFileWriterCSV());
 
-        FileWriter fwCsv = new FileWriter("C:\\Java\\FileWriter\\FileWriter.csv");
+
+        FileWriter fwCsv = new FileWriter(ConfigReader.getFileWriterCSV());
         fwCsv.write("Дата;Тип ТС;Сумма платежей;Комиссия;Количество билетов \n");
 
-        for (FileData fd: Main.filesData ) {
+        for (FileData fd: filesData ) {
 
 
                 fwCsv.write(fd.date + ";"+ fd.transportType + ";" + fd.amount

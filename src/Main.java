@@ -3,24 +3,57 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
-    static List<FileData> filesData = new ArrayList<>();
+
+    //static List<FileData> filesData = new ArrayList<>();
+
 
     public static void main(String[] args) throws IOException {
+
         //FileParsing fileParsing = new FileParsing();
+        ConfigReader configReader = new ConfigReader();
+        configReader.readConfigFile();
+        System.out.println(configReader.getFileWriterCSV());
+
+
         WriteData writeData = new WriteData();
+
+
+
+//        System.out.println(fileType);
+//        System.out.println(directory1);
+//        System.out.println(fileWriterCSV);
+//        System.out.println(fileWriterTXT);
 
         //fileParsing.startParsingFile();
         //filesData.add(fileParsing.startParsingFile());
         //filesData.add(new FileData("01.03.2021", "троллейбус", "27,00", "5,00", 75));
-        Files.walkFileTree(Paths.get("C:\\Parsing"), new DirectoryParsing());
+
+//        System.out.print("Ведите адрес для парсинга: ");
+//        String directory = scan.nextLine();
+//        System.out.print("укажите расширение файла: ");
+//        String fileType1 = scan.nextLine();
+//        if (fileType.equals("csv")){
+//            System.out.println("файл будет в формате csv");
+//        }
+//        else
+//            System.out.println("реестр формируется в формате txt");
+
+
+        Files.walkFileTree(Paths.get(configReader.getDirectory()), new DirectoryParsing());
+
+        //Files.walkFileTree(Paths.get("C:\\Parsing"), new DirectoryParsing());
 
 
         //System.out.println(filesData.size());
 
-        //writeData.WriteToFile();
-        writeData.WriteToFileCSV();
+        if (configReader.getFileType().equals("csv")){
+            writeData.WriteToFileCSV();
+        }
+        else
+            writeData.WriteToFile();
 
 
 
