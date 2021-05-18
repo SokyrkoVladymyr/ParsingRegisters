@@ -1,0 +1,4 @@
+fileType = csv
+walkFileTreeDirectory = C:\\Parsing
+File writer csv = C:\Work\Projects\Transport\Parsing\FileWriter.csv
+File writer txt = C:\Work\Projects\Transport\Parsing\FileWriter.txt

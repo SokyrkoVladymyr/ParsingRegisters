@@ -60,6 +60,9 @@ public class Main {
 
 
 
+
+
+
 //        for (int i = 0; i < filesData.size(); i++){
 //            System.out.println("Сумма: " + filesData.get(i).amount);
 //            System.out.println("Комиссия: " + filesData.get(i).commission);

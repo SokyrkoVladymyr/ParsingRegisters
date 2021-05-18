@@ -1,5 +1,6 @@
 
 
+import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,13 +12,17 @@ public class WriteData {
     static List<FileData> filesData = new ArrayList<>();
 
 
+
+
     WriteData() throws FileNotFoundException {
 
     }
 
+
     public void WriteToFile () throws IOException {
         FileWriter fw = new FileWriter(ConfigReader.getFileWriterTXT());
         fw.write("   Дата       Тип ТС     Сумма платежей    Комиссия   Количество билетов \n");
+
 
         for (FileData fd: filesData ) {
 
@@ -37,6 +42,7 @@ public class WriteData {
                     + "         " + fd.commission + "         " + fd.numberOfTickets + "    \n");
 
     }
+
 
         fw.close();
 
