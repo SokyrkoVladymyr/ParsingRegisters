@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WriteData {
+ class WriteData {
 
 
     static List<FileData> filesData = new ArrayList<>();
@@ -14,24 +14,17 @@ public class WriteData {
 
 
 
-    WriteData() throws FileNotFoundException {
-
+    WriteData() {
     }
 
 
-    public void WriteToFile () throws IOException {
+    void WriteToFile () throws IOException {
         FileWriter fw = new FileWriter(ConfigReader.getFileWriterTXT());
         fw.write("   Дата       Тип ТС     Сумма платежей    Комиссия   Количество билетов \n");
 
 
         for (FileData fd: filesData ) {
 
-//            fw.write(fd.date,0,fd.date.length());
-//            fw.write(fd.transportType,15,fd.transportType.length());
-//            fw.write(fd.amount, 32,fd.amount.length());
-//            fw.write(fd.commission,47,fd.commission.length());
-//            fw.write(fd.numberOfTickets, 61,fd.numberOfTickets.length());
-//            fw.write(" \n");
 
         if (fd.transportType.equals("троллейбус")){
             fw.write(fd.date + "    "+ fd.transportType + "       " + fd.amount
@@ -53,13 +46,13 @@ public class WriteData {
 
 
         FileWriter fwCsv = new FileWriter(ConfigReader.getFileWriterCSV());
-        fwCsv.write("Дата;Тип ТС;Сумма платежей;Комиссия;Количество билетов \n");
+        fwCsv.write("Дата;Тип ТС;Сумма платежей;Комиссия;Количество билетов;Наименование файла \n");
 
         for (FileData fd: filesData ) {
 
 
                 fwCsv.write(fd.date + ";"+ fd.transportType + ";" + fd.amount
-                        + ";" + fd.commission + ";" + fd.numberOfTickets + "\n");
+                        + ";" + fd.commission + ";" + fd.numberOfTickets +";" + fd.fileName + "\n");
 
         }
 
